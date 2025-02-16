@@ -13,25 +13,25 @@ function createCard(item) {
     downloads,
   } = item;
   return `        
-        <li>
+        <li class = "gallery-card">
           <a href="${largeImageURL}">
-            <img src="${webformatURL}" alt="${tags}" />
-            <ul>
-              <li>
+            <img src="${webformatURL}" alt="${tags}" width="360" height="200" class = "card-img" />
+            <ul class = "card-stats">
+              <li class = "card-stat">
                 <p>Likes</p>
-                <p>${likes}</p>
+                <span>${likes}</span>
               </li>
-              <li>
+              <li class = "card-stat">
                 <p>Views</p>
-                <p>${views}</p>
-              </li>
-              <li>
+                <span>${views}</span>
+                </li>
+              <li class = "card-stat">
                 <p>Comments</p>
-                <p>${comments}</p>
+                <span>${comments}</span>
               </li>
-              <li>
+              <li class = "card-stat">
                 <p>Downloads</p>
-                <p>${downloads}</p>
+                <span>${downloads}</span>
               </li>
             </ul>
           </a>

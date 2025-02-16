@@ -1,8 +1,12 @@
 import SimpleLightbox from 'simplelightbox';
+import iziToast from 'izitoast';
+
 import 'simplelightbox/dist/simple-lightbox.min.css';
+import 'izitoast/dist/css/iziToast.min.css';
 
 import { getPhotos } from './js/pixabey-api';
 import { createGallery } from './js/render-functions';
+import { hideLoader, showLoader } from './js/helpers/loader';
 
 const refs = {
   form: document.querySelector('.js-form'),
@@ -20,22 +24,21 @@ const gallery = new SimpleLightbox('.gallery a', options);
 
 function onSearchFormSubmit(e) {
   e.preventDefault();
-  console.dir(e.target);
 
   const query = e.target.elements.query.value.trim();
   const isQueryEmpty = !query;
-  if (isQueryEmpty) return console.log('Your query is empty');
+  if (isQueryEmpty)
+    return iziToast.warning({
+      position: 'center',
+      message: 'Your query is empty',
+    });
 
-  console.log('🚀 ~ onSearchFormSubmit ~ query:', query);
+  refs.galleryList.innerHTML = '';
+  showLoader();
 
   getPhotos(query)
     .then(({ data }) => {
-      console.log(data);
-
       if (data.hits.length === 0) {
-        console.log(
-          'Sorry, there are no images matching your search query. Please try again!'
-        );
         throw new Error(
           'Sorry, there are no images matching your search query. Please try again!'
         );
@@ -47,7 +50,14 @@ function onSearchFormSubmit(e) {
       refs.galleryList.innerHTML = createGallery(items);
       gallery.refresh();
     })
-    .catch(console.log);
+    .catch(({ message }) => {
+      iziToast.error({
+        position: 'center',
+        messageColor: 'red',
+        message: message,
+      });
+    })
+    .finally(() => hideLoader());
 
-  e.target.reset(query);
+  e.target.reset();
 }
