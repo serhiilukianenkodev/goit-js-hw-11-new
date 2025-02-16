@@ -6,17 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hw-11</title>
     <script type="module" crossorigin src="/goit-js-hw-11-new/index.js"></script>
-    <link rel="modulepreload" crossorigin href="/goit-js-hw-11-new/assets/vendor-BDR0_ys0.js">
-    <link rel="stylesheet" crossorigin href="/goit-js-hw-11-new/assets/vendor-DkczhqSJ.css">
-    <link rel="stylesheet" crossorigin href="/goit-js-hw-11-new/assets/index-BE24Cirx.css">
+    <link rel="modulepreload" crossorigin href="/goit-js-hw-11-new/assets/vendor-BqSmJx-A.js">
+    <link rel="stylesheet" crossorigin href="/goit-js-hw-11-new/assets/vendor-CWKLx11g.css">
+    <link rel="stylesheet" crossorigin href="/goit-js-hw-11-new/assets/index-BOYdlf1I.css">
   </head>
   <body>
     <main>
-      <form class="js-form">
-        <input type="text" name="query" />
-        <button type="submit">Search</button>
-      </form>
-      <ul class="gallery js-gallery"></ul>
+      <div class="container">
+        <form class="form js-form">
+          <input type="text" name="query" placeholder="Search images..." />
+          <button type="submit">Search</button>
+        </form>
+      </div>
+      <div class="container">
+        <ul class="gallery js-gallery"></ul>
+        <span class="loader hide"></span>
+        <img src="" alt="" />
+      </div>
     </main>
 
   </body>
